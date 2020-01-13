@@ -6,7 +6,7 @@ npm install
 
 ## 项目启动
 
-npm start
+npm run serve
 
 ## 项目说明
 - 使用 [vue cli 3.0](https://cli.vuejs.org/zh/)创建的应用

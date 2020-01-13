@@ -72,8 +72,6 @@ export default {
 </script>
 
 <style lang="less">
-@import "~@/assets/item.less";
-
 .detail-com-title {
   text-align: center;
   margin-bottom: 8px;

@@ -87,7 +87,6 @@ export default {
 }
 </script>
 <style lang="less">
-@import "~@/assets/item.less";
 .subject-wrap {
   background-color: #fff;
 

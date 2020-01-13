@@ -95,8 +95,6 @@ export default {
 }
 </script>
 <style lang="less">
-@import "~@/assets/item.less";
-
 .mint-spinner-fading-circle {
   margin: 0 auto;
 }

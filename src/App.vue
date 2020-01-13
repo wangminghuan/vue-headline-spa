@@ -5,6 +5,7 @@
 </template>
 <style lang="less">
 @import "~@/assets/reset.css";
+@import "~@/assets/item.less";
 .finish-tips {
   text-align: center;
   height: 20px;
