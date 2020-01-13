@@ -12,3 +12,7 @@ npm run serve
 - 使用 [vue cli 3.0](https://cli.vuejs.org/zh/)创建的应用
 - 引入[mint-ui](http://mint-ui.github.io/docs/#/zh-cn2/quickstart) 部分组件，借助 `babel-plugin-component`，我们可以只引入需要的组件，以达到减小项目体积的目的
 
+## 项目预览
+
+[基于vue创建的SPA项目](http://122.51.207.71:3001)
+
