@@ -9,11 +9,8 @@
         基于vue创建的SPA项目
       </h2>
       <div class="links">
-        <router-link to="/patent/3" style="margin-right:20px">
-          <mt-button type="primary">进入专栏页面</mt-button>
-        </router-link>
-        <router-link to="/subject/2">
-          <mt-button type="primary">进入专题页面</mt-button>
+        <router-link to="/news-all">
+          <mt-button type="primary">今日头条-推荐板块</mt-button>
         </router-link>
       </div>
     </div>

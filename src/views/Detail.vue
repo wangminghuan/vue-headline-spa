@@ -4,33 +4,21 @@
     <div class="detail-inner-wrap">
       <div class="article-wrap">
         <h2>{{renderData.title}}</h2>
-        <p class="article-info"><span class="time">{{renderData.detail.time}}</span> <span>阅读<i>{{renderData.detail.ha_readNum}}</i></span> <span>赞<i>{{renderData.detail.ha_upNum}}</i></span></p>
+        <div class="article-info">
+        <div class="left">
+         <img style="width:20px;margin-right:10px" :src="renderData.media_user.avatar_url"><span>{{renderData.source}}</span>
+        </div>
+        <div class="right"><span>{{renderData.comment_count}}评论 </span><em v-if="renderData.publish_time">{{$formatTime(renderData.publish_time)}}</em></div></div>
         <div class="content-wrap">
           <div class="content ql-editor"
-               v-html="renderData.detail.ha_content"></div>
+               v-html="renderData.content"></div>
         </div>
-        <p class="article-info"><span>小编：<i>{{renderData.detail.ha_author}}</i></span> <span>文章来源：<i>{{renderData.detail.ha_source}}</i></span></p>
-      </div>
-      <div class="recom-more">
-        <h4 class="detail-com-title"><em>相关推荐</em></h4>
-        <ul class="article-list-wrap">
-          <li class="article-list-item"
-              v-for="(item,index) in renderData.recommendList"
-              :key="index"
-              @click="handleJump(item)">
-            <div class="cont">
-              <p>{{item.ha_title}}</p>
-              <ul class="tag-btm">
-                <div class="nums"><b><em class="tag">{{item.ha_tags}}</em><em class="read">阅读 {{item.ha_readNum}}</em></b> <em class="time">{{item.time}}
-                  </em></div>
-              </ul>
-            </div>
-            <div class="pic"><img :src="item.ha_image"></div>
-          </li>
-        </ul>
       </div>
     </div>
     <div style="height:20px"></div>
+  </div>
+  <div v-else class="loading-svg">
+    <img src="@/assets/loading.svg">
   </div>
 </template>
 <script>
@@ -38,9 +26,7 @@ export default {
   data () {
     return {
       loading: false,
-      renderData: {
-        recommendList: []
-      }
+      renderData: {}
     }
   },
   beforeRouteUpdate (to, from, next) {
@@ -53,17 +39,18 @@ export default {
   },
   methods: {
     handleJump (item) {
-      this.$router.push("/detail/" + item.ha_id)
+      this.$router.push("/detail/" + item.item_id)
     },
     getData (id) {//请求
       this.loading = true;
-      this.$http.get('/api/head/head/detail', {        params: {
-          ha_id: id
-        }      }).then((res) => {
+      this.$http.get(`/testapi/i${id}/info/`, {params: {
+          _signature:'HLIIRxARQk77xfBBg2LRhxyyCF',
+          i:id
+        }   }).then((res) => {
         this.loading = false;
         const _data = res.data;
-        if (_data.code == 0) {
-          this.renderData = _data.data
+        if(_data.success){
+           this.renderData=_data.data||{}
         }
       })
     },
@@ -72,6 +59,15 @@ export default {
 </script>
 
 <style lang="less">
+.loading-svg{
+  width: 20%;
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+  left:0;
+  right: 0;
+  margin:0 auto;
+}
 .detail-com-title {
   text-align: center;
   margin-bottom: 8px;
@@ -138,7 +134,13 @@ export default {
     color: #999;
     line-height: 20px;
     margin: 32px 0;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .left,.right{
+      display: flex;
+      align-items: center;
+    }
     i {
       margin-left: 5px;
     }

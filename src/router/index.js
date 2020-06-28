@@ -14,12 +14,8 @@ const router = new Router({
       component: () => import('@/views/Home.vue')
     },
     {
-      path: '/patent/:id',
-      component: () => import('@/views/Patent.vue')
-    },
-    {
-      path: '/subject/:id',
-      component: () => import('@/views/Subject.vue')
+      path: '/news-all',
+      component: () => import('@/views/All.vue')
     },
     {
       path: '/detail/:id',

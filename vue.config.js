@@ -5,10 +5,13 @@ module.exports = {
   publicPath: "/",
   devServer: {
     proxy: {
-      "/api": {
-        target: "http://service.inswindows.com",
+      "/testapi": {
+        target: "https://m.toutiao.com",
         ws: true,
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite:{
+          '^/testapi':'/'
+        }
       }
     }
   },
